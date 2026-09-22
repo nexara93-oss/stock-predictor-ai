@@ -1,0 +1,1987 @@
+<!DOCTYPE html>
+<html lang="ar" id="htmlTag">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <title>Stock Predictor - AI Stock Analysis</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Free AI-powered stock market prediction tool. Get daily, weekly, monthly, and yearly price forecasts for US stocks, crypto, forex, and commodities using machine learning.">
+    <meta name="keywords" content="stock prediction, stock forecast, AI stock analysis, machine learning trading, price prediction, AAPL, TSLA, crypto forecast, forex prediction, stock market analysis, توقعات الأسهم, تحليل أسهم, تداول, أسهم أمريكية, بتكلفة ذكاء اصطناعي, bitcoin prediction,黄金価格予測, prévision bourse, prediction bourse, analyse technique action">
+    <meta name="author" content="Stock Predictor">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://stockpredictor.example.com/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://stockpredictor.example.com/">
+    <meta property="og:title" content="Stock Predictor - AI-Powered Stock Forecasting">
+    <meta property="og:description" content="Free AI tool that predicts stock prices using machine learning. Analyze daily, weekly, monthly, and yearly trends for any stock.">
+    <meta property="og:image" content="https://stockpredictor.example.com/og-image.png">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ar_DZ">
+    <meta property="og:locale:alternate" content="fr_FR">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Stock Predictor - AI-Powered Stock Forecasting">
+    <meta name="twitter:description" content="Free AI tool that predicts stock prices using machine learning. Analyze daily, weekly, monthly, and yearly trends for any stock.">
+    <meta name="twitter:image" content="https://stockpredictor.example.com/og-image.png">
+
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#0b0e14">
+    <meta name="application-name" content="Stock Predictor">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Stock Predictor">
+    <link rel="alternate" hreflang="ar" href="https://stockpredictor.example.com/?lang=ar">
+    <link rel="alternate" hreflang="fr" href="https://stockpredictor.example.com/?lang=fr">
+    <link rel="alternate" hreflang="en" href="https://stockpredictor.example.com/?lang=en">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 92'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' y1='1' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%231e9e34'/%3E%3Cstop offset='.55' stop-color='%233fd44f'/%3E%3Cstop offset='1' stop-color='%238bf07a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='120' height='92' rx='20' fill='white'/%3E%3Cpath d='M6 78 C22 70 30 64 41 65 C53 66 57 54 69 50 C81 46 86 52 98 46' stroke='%234d8dff' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M10 82 C30 72 43 68 57 61 C73 53 83 40 96 24' stroke='url(%23a)' stroke-width='7.5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M94 26 L101 8 L114 27 Z' fill='url(%23a)'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg: #0a0d13;
+            --bg-soft: #11151d;
+            --panel: #12171f;
+            --panel-2: #171d27;
+            --panel-3: #1e2531;
+            --brd: rgba(255,255,255,0.06);
+            --brd-2: rgba(255,255,255,0.12);
+            --text: #e8eaf0;
+            --text-2: #8b93a5;
+            --text-3: #5a6175;
+            --accent: #5DD62C;
+            --accent-2: #3fbf1a;
+            --green: #5DD62C;
+            --red: #ff5a6a;
+            --gold: #f0b90b;
+            --blue: #4d8dff;
+            --cyan: #22d3ee;
+            --up-a: rgba(93,214,44,0.14);
+            --up-b: rgba(93,214,44,0.40);
+            --dn-a: rgba(255,90,106,0.12);
+            --dn-b: rgba(255,90,106,0.40);
+            --shadow: 0 10px 34px rgba(0,0,0,0.42);
+            --shadow-soft: 0 6px 22px rgba(0,0,0,0.30);
+            --r-lg: 22px;
+            --r-md: 16px;
+            --r-sm: 11px;
+            --mono: 'JetBrains Mono', 'Courier New', monospace;
+            --sans: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            --display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+        }
+        .light {
+            --bg: #f2f4f9;
+            --bg-soft: #ffffff;
+            --panel: #ffffff;
+            --panel-2: #f7f8fb;
+            --panel-3: #eceff5;
+            --brd: rgba(15,23,42,0.06);
+            --brd-2: rgba(15,23,42,0.13);
+            --text: #131722;
+            --text-2: #5f6675;
+            --text-3: #99a0b0;
+            --accent: #2f9e17;
+            --accent-2: #268112;
+            --green: #1e9e42;
+            --red: #e5484d;
+            --gold: #c9971a;
+            --blue: #3178e8;
+            --cyan: #0891b2;
+            --up-a: rgba(30,158,66,0.10);
+            --up-b: rgba(30,158,66,0.34);
+            --dn-a: rgba(229,72,77,0.09);
+            --dn-b: rgba(229,72,77,0.34);
+            --shadow: 0 12px 34px rgba(15,23,42,0.10);
+            --shadow-soft: 0 6px 20px rgba(15,23,42,0.07);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--sans);
+            background:
+                radial-gradient(1100px 520px at 6% -8%, rgba(93,214,44,0.10), transparent 60%),
+                radial-gradient(950px 500px at 100% -4%, rgba(77,141,255,0.10), transparent 60%),
+                radial-gradient(1100px 640px at 50% 118%, rgba(139,92,246,0.09), transparent 62%),
+                var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
+            -webkit-font-smoothing: antialiased;
+            font-size: 13.5px;
+        }
+        ::selection { background: rgba(93,214,44,0.30); color: #fff; }
+        ::-webkit-scrollbar { width: 9px; height: 9px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--brd-2); border-radius: 8px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+        /* ============ Flowing borderless surfaces — no boxes, no cards ============ */
+        .soft, .soft-flat {
+            background: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            border: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+        .light .soft, .light .soft-flat { background: transparent !important; }
+
+        /* ============ Ticker tape ============ */
+        .ticker-wrap {
+            position: sticky; top: 0; z-index: 100;
+            height: 34px; display: flex; align-items: center;
+            overflow: hidden;
+            background: rgba(8,10,16,0.82);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 6px 22px rgba(0,0,0,0.35);
+        }
+        .light .ticker-wrap { background: rgba(255,255,255,0.82); }
+        .ticker-track {
+            display: flex; animation: tickerScroll 55s linear infinite; white-space: nowrap;
+        }
+        .ticker-track:hover { animation-play-state: paused; }
+        @keyframes tickerScroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .ticker-item {
+            display: inline-flex; align-items: center; gap: 7px;
+            padding: 0 15px; font-size: 11px; font-family: var(--mono); height: 34px;
+        }
+        .ticker-item .sym { color: var(--text-3); font-weight: 500; letter-spacing: 0.5px; }
+        .ticker-item .pr { font-weight: 700; color: var(--text); }
+
+        /* ============ Top bar ============ */
+        .top-bar {
+            display: flex; align-items: center; gap: 14px;
+            padding: 12px 18px; flex-wrap: wrap;
+            position: sticky; top: 34px; z-index: 90;
+            background: rgba(10,13,19,0.72);
+            backdrop-filter: blur(20px) saturate(150%);
+            -webkit-backdrop-filter: blur(20px) saturate(150%);
+            box-shadow: 0 8px 26px rgba(0,0,0,0.28);
+        }
+        .light .top-bar { background: rgba(242,244,249,0.78); box-shadow: 0 8px 26px rgba(15,23,42,0.08); }
+        .logo-wrap { display: flex; align-items: center; gap: 12px; user-select: none; cursor: default; }
+        /* Brand mark — user logo: green arrow + blue wave + network on light tile */
+        .logo-mark {
+            width: 48px; height: 48px; border-radius: 14px; flex-shrink: 0;
+            background: linear-gradient(180deg, #ffffff, #eef3f9);
+            border: 1px solid rgba(15,23,42,0.10);
+            box-shadow: 0 8px 22px rgba(0,0,0,0.30);
+            display: grid; place-items: center; position: relative; overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .logo-wrap:hover .logo-mark {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.38), 0 0 22px rgba(53,198,44,0.25);
+        }
+        .logo-mark::after {
+            content: ''; position: absolute; top: 0; left: -60%; width: 55%; height: 100%;
+            background: linear-gradient(100deg, transparent, rgba(255,255,255,0.65), transparent);
+            transform: skewX(-20deg);
+        }
+        .ar-logo { font-size: 1.35rem; font-weight: 800; line-height: 1.15; white-space: nowrap; }
+        .ar-logo .l1 { color: #6ea8ff; }
+        .light .ar-logo .l1 { color: #1a3a8f; }
+        .ar-logo .l2 { color: #35c759; }
+        .light .ar-logo .l2 { color: #2a9e2a; }
+        .en-logo { font-size: 1.05rem; font-weight: 800; letter-spacing: 0.5px; white-space: nowrap; text-transform: uppercase; }
+        .en-logo .l1 { color: #6ea8ff; }
+        .light .en-logo .l1 { color: #1a3a8f; }
+        .en-logo .l2 { color: #35c759; }
+        .light .en-logo .l2 { color: #2a9e2a; }
+        .logo-text {
+            font-family: var(--display); font-size: 1.05rem; font-weight: 700;
+            letter-spacing: 1px; color: var(--text); text-transform: uppercase; line-height: 1;
+        }
+        .logo-text em {
+            font-style: normal;
+            background: linear-gradient(90deg, #2fe6a8, #22d3ee);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .logo-sub {
+            display: block; font-family: var(--mono); font-size: 8px;
+            color: var(--text-2); letter-spacing: 3px; margin-top: 5px; text-transform: uppercase;
+        }
+        .top-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-left: auto; }
+        .top-btn {
+            padding: 8px 14px; border-radius: 999px; font-size: 11.5px; font-weight: 600;
+            border: none; background: rgba(255,255,255,0.06); color: var(--text-2);
+            cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 6px;
+            font-family: var(--mono); letter-spacing: 0.5px;
+        }
+        .light .top-btn { background: rgba(15,23,42,0.05); }
+        .top-btn:hover { color: var(--accent); background: var(--up-a); transform: translateY(-2px); }
+        #recBtn {
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: #06120a; box-shadow: 0 8px 22px rgba(93,214,44,0.28);
+        }
+        #recBtn:hover { color: #06120a; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: 0 12px 28px rgba(93,214,44,0.38); }
+        .lang-dropdown { position: relative; }
+        .lang-dropdown-menu {
+            display: none; position: absolute; top: calc(100% + 8px); right: 0; z-index: 300;
+            background: var(--panel-2); border-radius: var(--r-md); padding: 5px; min-width: 152px;
+            box-shadow: var(--shadow);
+        }
+        .lang-dropdown-menu.open { display: block; animation: pop 0.16s ease-out; }
+        @keyframes pop { from { opacity: 0; transform: translateY(-6px) scale(0.97); } to { opacity: 1; transform: none; } }
+        .lang-opt {
+            display: block; padding: 9px 12px; border-radius: var(--r-sm);
+            font-size: 12px; font-weight: 500; cursor: pointer;
+            color: var(--text-2); transition: 0.15s;
+        }
+        .lang-opt:hover { background: var(--panel-3); color: var(--text); }
+        .lang-opt.active { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #06120a; font-weight: 700; }
+
+        /* ============ Layout ============ */
+        .container { max-width: 1500px; margin: 0 auto; padding: 16px; }
+        .layout { display: grid; grid-template-columns: 258px 1fr; gap: 16px; align-items: start; }
+        @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
+
+        /* ============ Watchlist — open list, no box ============ */
+        .sidebar {
+            padding: 6px 0 20px; overflow: hidden;
+            position: sticky; top: 92px;
+            max-height: calc(100vh - 112px); overflow-y: auto;
+            background: transparent !important; box-shadow: none !important; border-radius: 0 !important;
+            border-right: 1px solid rgba(255,255,255,0.07);
+        }
+        .light .sidebar { border-right: 1px solid rgba(15,23,42,0.08); }
+        @media (max-width: 900px) {
+            .sidebar {
+                display: none; position: fixed; top: 0; left: -88%; width: 88%; max-width: 320px;
+                bottom: 0; z-index: 205; border-radius: 0 26px 26px 0;
+                transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                max-height: none; height: 100%;
+                background: var(--panel); box-shadow: var(--shadow);
+            }
+        }
+        .sidebar.mobile-open { display: block; left: 0; }
+        .sidebar-close { display: none; cursor: pointer; font-size: 15px; color: var(--text-2); }
+        .sidebar-close:hover { color: var(--red); }
+        @media (max-width: 900px) { .sidebar-close { display: block; } }
+        .sidebar-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 6px 12px 12px;
+            position: sticky; top: 0; z-index: 2;
+            background: transparent;
+        }
+        .sidebar-header h3 {
+            font-family: var(--mono); font-size: 10.5px; font-weight: 700;
+            color: var(--text-2); letter-spacing: 1.8px; text-transform: uppercase;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .sidebar-header h3::before {
+            content: ''; width: 7px; height: 7px; border-radius: 50%;
+            background: var(--accent); box-shadow: 0 0 10px var(--accent);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        .market-group { padding: 0 8px 8px; }
+        .market-title {
+            font-size: 11px; color: var(--text-2); padding: 12px 12px 8px;
+            background: transparent; border-radius: 0;
+            cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+            transition: 0.18s; font-family: var(--sans); font-weight: 700;
+            letter-spacing: 0.6px; text-transform: uppercase; margin-bottom: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .light .market-title { background: transparent; }
+        .market-title:hover { color: var(--accent); background: var(--up-a); }
+        .market-title .arrow { font-size: 9px; transition: transform 0.22s; color: var(--text-3); }
+        .mkt-clock { font-size: 9px; color: var(--text-3); margin-right: 6px; letter-spacing: 0; text-transform: none; }
+        .mkt-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+        .mkt-dot.open { background: var(--green); box-shadow: 0 0 8px rgba(93,214,44,0.8); }
+        .mkt-dot.closed { background: var(--red); box-shadow: 0 0 8px rgba(255,90,106,0.6); }
+        .symbol-list { display: none; padding: 2px 0; }
+        .symbol-list.open { display: block; animation: fadeIn 0.2s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .symbol-pill {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 9px 12px; font-size: 12.5px; font-family: var(--mono);
+            color: var(--text-2); cursor: pointer; transition: 0.18s;
+            border-radius: 0; font-weight: 500; margin-bottom: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .symbol-pill:hover { background: transparent; color: var(--accent); transform: translateX(4px); }
+        .light .symbol-pill:hover { background: transparent; }
+        .symbol-pill.active {
+            background: transparent;
+            color: var(--accent); font-weight: 700;
+            box-shadow: none;
+            border-left: 2px solid var(--accent);
+            padding-left: 10px;
+        }
+        .pill-price { font-size: 10.5px; color: var(--text-3); font-weight: 500; }
+        .symbol-pill.active .pill-price { color: var(--accent); }
+
+        /* ============ Main ============ */
+        .main-area { min-width: 0; display: flex; flex-direction: column; gap: 26px; }
+
+        .search-row { display: flex; gap: 12px; padding: 26px 6px 18px; align-items: flex-end; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .light .search-row { border-bottom: 1px solid rgba(15,23,42,0.09); }
+        .search-row input {
+            flex: 1; min-width: 110px; padding: 10px 4px; border-radius: 0;
+            border: none; border-bottom: 2px solid transparent; background: transparent; color: var(--text);
+            font-size: 26px; font-family: var(--display); outline: none; transition: 0.25s;
+            font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+        }
+        .light .search-row input { background: transparent; }
+        .search-row input::placeholder { color: var(--text-3); letter-spacing: 3px; opacity: 0.6; }
+        .search-row input:focus { box-shadow: none; background: transparent; border-bottom: 2px solid var(--accent); }
+        .light .search-row input:focus { background: transparent; }
+        .search-row .sym-hint {
+            font-family: var(--mono); font-size: 9px; color: var(--text-3);
+            padding: 0 0 14px; letter-spacing: 2px; flex-shrink: 0; background: none;
+        }
+        .search-row button {
+            padding: 12px 34px; border: none; border-radius: 999px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: #06120a; font-weight: 800; font-size: 13.5px; cursor: pointer; transition: 0.25s;
+            font-family: var(--sans); letter-spacing: 0.5px;
+            box-shadow: 0 12px 32px rgba(93,214,44,0.35);
+        }
+        .search-row button:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 16px 40px rgba(93,214,44,0.48); }
+        .search-row button:active { transform: translateY(0); }
+        .search-row button:disabled { opacity: 0.5; box-shadow: none; transform: none; }
+
+        .error-box {
+            background: transparent; color: var(--red);
+            border-radius: 0; padding: 12px 6px; text-align: center;
+            display: none; font-size: 13px; font-family: var(--sans);
+            box-shadow: none; border-bottom: 1px solid rgba(255,90,106,0.3);
+        }
+
+        /* ============ Company logos ============ */
+        .pill-logo, .logo-fb {
+            width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+        }
+        .pill-logo { object-fit: contain; background: rgba(255,255,255,0.92); padding: 2px; }
+        .logo-fb {
+            display: none; align-items: center; justify-content: center;
+            font-family: var(--sans); font-size: 9px; font-weight: 800;
+            color: #fff; background: linear-gradient(135deg, #4d8dff, #8b5cf6);
+            letter-spacing: 0;
+        }
+        .pb-logo-wrap { display: flex; align-items: center; }
+        .pb-logo, .pb-fb {
+            width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0;
+        }
+        .pb-logo {
+            object-fit: contain; background: rgba(255,255,255,0.95); padding: 5px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.35), 0 0 0 2px rgba(255,255,255,0.10);
+        }
+        .pb-fb {
+            display: none; align-items: center; justify-content: center;
+            font-family: var(--sans); font-size: 15px; font-weight: 800; color: #fff;
+            background: linear-gradient(135deg, #4d8dff, #8b5cf6);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.35), 0 0 0 2px rgba(255,255,255,0.10);
+        }
+
+        /* ============ Quote — flowing hero, no box ============ */
+        .price-bar {
+            display: flex; justify-content: space-between; align-items: flex-end;
+            padding: 10px 6px 20px; gap: 16px; flex-wrap: wrap;
+            border-radius: 0; position: relative; overflow: visible;
+            background: transparent;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            box-shadow: none;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .light .price-bar { background: transparent; border-bottom: 1px solid rgba(15,23,42,0.09); }
+        .price-left { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+        .pb-symbol {
+            font-family: var(--display); font-size: 1.1rem; font-weight: 700;
+            color: var(--text-2); letter-spacing: 3px;
+        }
+        .pb-price {
+            font-size: 3rem; font-weight: 700; color: var(--text);
+            font-family: var(--display); letter-spacing: -2px; line-height: 1;
+            text-shadow: 0 6px 30px rgba(0,0,0,0.35);
+        }
+        .pb-change {
+            font-size: 12.5px; font-weight: 700; font-family: var(--mono);
+            padding: 6px 14px; border-radius: 999px; letter-spacing: 0.4px;
+        }
+        .pb-change.up { color: var(--green); background: var(--up-a); box-shadow: inset 0 0 0 1px var(--up-b); }
+        .pb-change.down { color: var(--red); background: var(--dn-a); box-shadow: inset 0 0 0 1px var(--dn-b); }
+        .pb-time {
+            font-size: 10.5px; color: var(--text-3); font-family: var(--mono);
+            display: flex; align-items: center; gap: 8px; letter-spacing: 0.4px;
+        }
+        .pb-time::before {
+            content: ''; width: 7px; height: 7px; border-radius: 50%;
+            background: var(--accent); box-shadow: 0 0 9px var(--accent);
+            animation: pulse 1.6s ease-in-out infinite;
+        }
+
+        /* ============ Timeframe tabs — underline flow, no pill box ============ */
+        .tf-tabs {
+            display: flex; gap: 26px; padding: 4px 6px 0; width: fit-content;
+            background: transparent; border-radius: 0;
+            backdrop-filter: none; -webkit-backdrop-filter: none;
+            box-shadow: none;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .light .tf-tabs { background: transparent; border-bottom: 1px solid rgba(15,23,42,0.09); }
+        .tf-tab {
+            padding: 12px 2px; border-radius: 0; font-size: 12.5px; font-weight: 700;
+            background: transparent; border: none; border-bottom: 2px solid transparent; color: var(--text-3);
+            cursor: pointer; transition: 0.2s; font-family: var(--sans);
+            letter-spacing: 0.6px; text-transform: uppercase; margin-bottom: -1px;
+        }
+        .tf-tab:hover { color: var(--text); background: transparent; }
+        .tf-tab.active {
+            background: transparent;
+            color: var(--text);
+            font-weight: 800;
+            border-bottom: 2px solid var(--accent);
+            box-shadow: none;
+        }
+
+        /* ============ Chart — cinematic dark stage like reference ============ */
+        .chart-wrap { padding: 14px 10px 10px; height: 620px; position: relative; border-radius: 20px !important; overflow: hidden;
+            background:
+                radial-gradient(700px 260px at 20% 0%, rgba(47,230,168,0.08), transparent 60%),
+                radial-gradient(700px 300px at 85% 20%, rgba(77,141,255,0.10), transparent 60%),
+                radial-gradient(rgba(255,255,255,0.055) 1px, transparent 1.2px),
+                linear-gradient(180deg, #0c1425 0%, #0a111f 55%, #080d18 100%) !important;
+            background-size: auto, auto, 22px 22px, auto !important;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), inset 0 0 80px rgba(0,0,0,0.45), 0 18px 50px rgba(0,0,0,0.35) !important;
+        }
+        .chart-wrap::after {
+            content: ''; position: absolute; left: 14px; right: 14px; bottom: 8px; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.10), transparent);
+        }
+        .chart-wrap canvas { width: 100% !important; height: 100% !important; }
+        @media (max-width: 640px) { .chart-wrap { height: 420px; } }
+
+        /* ============ Forecast cards — professional ============ */
+        .cards-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+        @media (max-width: 1000px) { .cards-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 520px) { .cards-grid { grid-template-columns: 1fr; } }
+        .pred-card {
+            padding: 20px 20px 18px; display: none; position: relative; overflow: hidden;
+            border-radius: 18px;
+            background: linear-gradient(165deg, #111c32 0%, #0b1322 60%, #090f1c 100%);
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.40), inset 0 1px 0 rgba(255,255,255,0.07);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+        .light .pred-card {
+            background: linear-gradient(165deg, #ffffff, #eef2f8);
+            border: 1px solid rgba(15,23,42,0.08);
+            box-shadow: 0 14px 34px rgba(15,23,42,0.10), inset 0 1px 0 #ffffff;
+        }
+        .pred-card.visible { display: block; animation: rise 0.35s ease-out both; }
+        @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+        .pred-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(47,230,168,0.38);
+            box-shadow: 0 22px 50px rgba(0,0,0,0.50), 0 0 28px rgba(47,230,168,0.13), inset 0 1px 0 rgba(255,255,255,0.09);
+        }
+        .pred-card.trend-down:hover {
+            border-color: rgba(255,77,94,0.38);
+            box-shadow: 0 22px 50px rgba(0,0,0,0.50), 0 0 28px rgba(255,77,94,0.13), inset 0 1px 0 rgba(255,255,255,0.09);
+        }
+        .pred-card::after {
+            content: ''; position: absolute; top: -52px; right: -52px;
+            width: 132px; height: 132px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(47,230,168,0.17), transparent 70%);
+            pointer-events: none;
+        }
+        .pred-card.trend-down::after { background: radial-gradient(circle, rgba(255,77,94,0.15), transparent 70%); }
+        .pred-card.trend-up::before, .pred-card.trend-down::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+        }
+        .pred-card.trend-up::before { background: linear-gradient(90deg, #2fe6a8, #22d3ee); }
+        .pred-card.trend-down::before { background: linear-gradient(90deg, #ff4d5e, #ff8a5c); }
+        .pc-label {
+            font-size: 10px; color: var(--text-2); margin-bottom: 10px;
+            text-transform: uppercase; letter-spacing: 2.2px; font-family: var(--sans); font-weight: 700;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .pc-label::before { content: ''; width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+        .pred-card.trend-up .pc-label::before { background: #2fe6a8; box-shadow: 0 0 9px #2fe6a8; }
+        .pred-card.trend-down .pc-label::before { background: #ff4d5e; box-shadow: 0 0 9px #ff4d5e; }
+        .pc-price {
+            font-size: 1.7rem; font-weight: 700; margin-bottom: 10px;
+            font-family: var(--display); color: var(--text); letter-spacing: -1px;
+        }
+        .pc-change { display: inline-block; font-size: 12.5px; font-weight: 700; font-family: var(--mono); padding: 5px 13px; border-radius: 999px; }
+        .pc-change.up { color: #2fe6a8; background: rgba(47,230,168,0.12); border: 1px solid rgba(47,230,168,0.32); }
+        .pc-change.down { color: #ff6b7a; background: rgba(255,77,94,0.12); border: 1px solid rgba(255,77,94,0.32); }
+        .pc-conf {
+            display: inline-block; margin-top: 10px; padding: 4px 11px;
+            border-radius: 999px; font-size: 9.5px; font-weight: 700;
+            font-family: var(--mono); letter-spacing: 0.4px;
+        }
+        .pc-conf.high { background: var(--up-a); color: var(--green); box-shadow: inset 0 0 0 1px var(--up-b); }
+        .pc-conf.med { background: rgba(240,185,11,0.12); color: var(--gold); box-shadow: inset 0 0 0 1px rgba(240,185,11,0.34); }
+        .pc-conf.low { background: var(--dn-a); color: var(--red); box-shadow: inset 0 0 0 1px var(--dn-b); }
+        .conf-meter {
+            height: 6px; background: rgba(255,255,255,0.07); border-radius: 999px;
+            margin-top: 11px; overflow: hidden;
+        }
+        .light .conf-meter { background: rgba(15,23,42,0.07); }
+        .conf-meter i {
+            display: block; height: 100%; width: 0; border-radius: 999px;
+            background: linear-gradient(90deg, var(--accent), var(--cyan));
+            box-shadow: 0 0 12px rgba(93,214,44,0.5);
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #resultsArea { display: flex; flex-direction: column; gap: 8px; }
+
+        /* ============ Table — hairline rows, no boxes, no pills ============ */
+        .table-wrap { overflow: hidden; border-radius: 0; background: transparent !important; box-shadow: none !important; padding-top: 6px; }
+        .panel-head {
+            display: flex; justify-content: space-between; align-items: baseline;
+            gap: 10px; padding: 18px 6px 10px;
+            font-family: var(--sans); font-size: 15px; font-weight: 700;
+            letter-spacing: 0.2px; text-transform: none; color: var(--text);
+        }
+        .panel-head .ph-left { display: flex; align-items: baseline; gap: 9px; }
+        .panel-head .ph-left::before { display: none; }
+        .panel-head .ph-tag {
+            font-size: 10px; color: var(--text-3); letter-spacing: 2px;
+            padding: 0; border-radius: 0; background: transparent; font-family: var(--mono);
+        }
+        .light .panel-head .ph-tag { background: transparent; }
+        .table-scroll { overflow-x: auto; max-height: 460px; overflow-y: auto; padding: 0; }
+        table { width: 100%; border-collapse: collapse; border-spacing: 0; }
+        th, td {
+            padding: 13px 8px; text-align: center; font-size: 12.5px;
+            font-family: var(--mono); white-space: nowrap;
+        }
+        th {
+            color: var(--text-3); font-weight: 600; text-transform: uppercase;
+            letter-spacing: 1.4px; font-size: 10px;
+            position: sticky; top: 0; z-index: 1;
+            background: transparent;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.10);
+        }
+        td { color: var(--text); background: transparent !important; transition: 0.15s; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .light td { background: transparent !important; border-bottom: 1px solid rgba(15,23,42,0.07); }
+        .light th { border-bottom: 1px solid rgba(15,23,42,0.10); }
+        tbody tr:hover td { background: rgba(93,214,44,0.05) !important; }
+        tbody tr td:first-child { border-radius: 0; }
+        tbody tr td:last-child { border-radius: 0; }
+        .sig-badge {
+            padding: 0; border-radius: 0; font-size: 11px; font-weight: 700;
+            font-family: var(--sans); display: inline-block; letter-spacing: 0.3px;
+            text-transform: uppercase; background: none !important; box-shadow: none !important;
+        }
+        .sig-badge.strong_buy, .sig-badge.buy { color: var(--green); }
+        .sig-badge.neutral { color: var(--text-3); }
+        .light .sig-badge.neutral { background: none; }
+        .sig-badge.sell, .sig-badge.strong_sell { color: var(--red); }
+
+        /* ============ Loader — no box ============ */
+        .loader { display: none; text-align: center; padding: 40px 10px; border-radius: 0; background: transparent !important; box-shadow: none !important; }
+        .loader span {
+            display: inline-block; width: 11px; height: 11px; margin: 0 4px;
+            background: linear-gradient(135deg, var(--accent), var(--cyan));
+            border-radius: 50%; animation: bounce 1.4s ease-in-out infinite both;
+            box-shadow: 0 0 16px rgba(93,214,44,0.65);
+        }
+        .loader span:nth-child(1) { animation-delay: -0.32s; }
+        .loader span:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes bounce { 0%, 80%, 100% { transform: scale(0.3); opacity: 0.35; } 40% { transform: scale(1); opacity: 1; } }
+        #loaderText {
+            color: var(--text-3); margin-top: 14px; font-size: 11px;
+            font-family: var(--mono); letter-spacing: 1.4px; text-transform: uppercase;
+        }
+
+        /* ============ Mobile ============ */
+        .mobile-sidebar-btn {
+            display: none; padding: 8px 12px; border-radius: 999px;
+            background: rgba(255,255,255,0.06); color: var(--text-2);
+            cursor: pointer; transition: 0.18s;
+        }
+        .light .mobile-sidebar-btn { background: rgba(15,23,42,0.05); }
+        .mobile-sidebar-btn:hover { color: var(--accent); }
+        @media (max-width: 900px) { .mobile-sidebar-btn { display: flex; align-items: center; gap: 4px; } }
+        .sidebar-overlay { display: none; }
+        @media (max-width: 900px) {
+            .sidebar-overlay.active {
+                display: block; position: fixed; inset: 0;
+                background: rgba(3,5,9,0.6); backdrop-filter: blur(5px);
+                -webkit-backdrop-filter: blur(5px); z-index: 204; animation: fadeIn 0.22s ease-out;
+            }
+        }
+
+        /* ============ Advice modal — professional ============ */
+        .rec-modal-overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(3,5,9,0.72); backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); z-index: 500;
+            justify-content: center; align-items: center; padding: 16px;
+        }
+        .rec-modal-overlay.open { display: flex; }
+        .rec-modal {
+            background:
+                radial-gradient(440px 190px at 50% -70px, rgba(47,230,168,0.13), transparent 65%),
+                linear-gradient(165deg, #121c31, #0a111f);
+            border: 1px solid rgba(255,255,255,0.10);
+            border-radius: 22px; padding: 26px 24px 24px; max-width: 440px; width: 100%;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.08);
+            animation: modalPop 0.26s cubic-bezier(0.34, 1.4, 0.64, 1);
+            position: relative; overflow: hidden;
+        }
+        .rec-modal::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, #2fe6a8, #22d3ee, #4d8dff);
+        }
+        .light .rec-modal {
+            background: radial-gradient(440px 190px at 50% -70px, rgba(47,230,168,0.14), transparent 65%), linear-gradient(165deg, #ffffff, #eef2f8);
+            border: 1px solid rgba(15,23,42,0.09);
+            box-shadow: 0 40px 100px rgba(15,23,42,0.25), inset 0 1px 0 #ffffff;
+        }
+        @keyframes modalPop { 0% { transform: scale(0.92) translateY(14px); opacity: 0; } 100% { transform: none; opacity: 1; } }
+        .rec-modal h2 {
+            font-family: var(--sans); font-size: 16px; font-weight: 800;
+            letter-spacing: 0.3px; color: var(--text); margin-bottom: 4px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .rec-modal h2::before { content: ''; width: 5px; height: 18px; background: linear-gradient(180deg, #2fe6a8, #22d3ee); border-radius: 5px; }
+        .rec-modal .rec-sub {
+            font-size: 10.5px; color: var(--text-3); margin-bottom: 18px; padding-left: 15px;
+            font-family: var(--mono); letter-spacing: 1.4px; text-transform: uppercase;
+        }
+        .rec-modal .rec-big {
+            font-family: var(--sans); font-size: 1.65rem; font-weight: 800;
+            text-align: center; padding: 22px 16px; border-radius: 16px;
+            margin-bottom: 16px; letter-spacing: 1px; text-transform: uppercase;
+        }
+        .rec-big.strong_buy { background: linear-gradient(135deg, #2fe6a8, #22d3ee); color: #04120d; box-shadow: 0 16px 40px rgba(47,230,168,0.35); }
+        .rec-big.buy { background: rgba(47,230,168,0.10); color: #2fe6a8; border: 1.5px solid rgba(47,230,168,0.45); box-shadow: 0 10px 28px rgba(47,230,168,0.12); }
+        .rec-big.neutral { background: linear-gradient(135deg, rgba(240,185,11,0.25), rgba(240,185,11,0.08)); color: var(--gold); border: 1.5px solid rgba(240,185,11,0.4); }
+        .rec-big.sell { background: rgba(255,77,94,0.10); color: #ff6b7a; border: 1.5px solid rgba(255,77,94,0.45); box-shadow: 0 10px 28px rgba(255,77,94,0.12); }
+        .rec-big.strong_sell { background: linear-gradient(135deg, #ff4d5e, #ff8a5c); color: #fff; box-shadow: 0 16px 40px rgba(255,77,94,0.35); }
+        .rec-row {
+            display: flex; justify-content: space-between; align-items: center; gap: 8px;
+            padding: 12px 15px; font-size: 12.5px; margin-bottom: 8px;
+            background: rgba(255,255,255,0.035);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
+        }
+        .light .rec-row { background: rgba(15,23,42,0.035); border: 1px solid rgba(15,23,42,0.07); }
+        .rec-row .rec-tf { color: var(--text); font-family: var(--sans); font-weight: 700; text-transform: uppercase; font-size: 11.5px; letter-spacing: 0.5px; }
+        .rec-row .rec-val { font-weight: 800; font-family: var(--mono); font-size: 13px; padding: 4px 12px; border-radius: 999px; }
+        .rec-row .rec-val.up { color: #2fe6a8; background: rgba(47,230,168,0.12); border: 1px solid rgba(47,230,168,0.3); }
+        .rec-row .rec-val.down { color: #ff6b7a; background: rgba(255,77,94,0.12); border: 1px solid rgba(255,77,94,0.3); }
+        .rec-row .rec-cf { font-size: 10.5px; color: var(--text-3); font-family: var(--mono); }
+        .rec-modal .rec-footer { display: flex; gap: 10px; margin-top: 18px; }
+        .rec-modal .rec-footer button {
+            flex: 1; padding: 14px; border: none; border-radius: 14px;
+            font-weight: 800; font-size: 13px; cursor: pointer; transition: 0.2s;
+            font-family: var(--sans); letter-spacing: 0.4px;
+            background: linear-gradient(135deg, #2fe6a8, #1fb884);
+            color: #04120d; box-shadow: 0 12px 30px rgba(47,230,168,0.3);
+        }
+        .rec-modal .rec-footer .rec-close:hover { transform: translateY(-2px); box-shadow: 0 16px 38px rgba(47,230,168,0.42); }
+
+        /* ============ AI chat ============ */
+        .ai-fab {
+            position: fixed; bottom: 20px; inset-inline-end: 20px; z-index: 400;
+            width: 56px; height: 56px; border-radius: 50%; border: none;
+            background: linear-gradient(135deg, #2fe6a8, #1fb884);
+            color: #04120d; display: grid; place-items: center; cursor: pointer;
+            box-shadow: 0 16px 40px rgba(47,230,168,0.42);
+            transition: transform 0.2s ease;
+        }
+        .ai-fab:hover { transform: translateY(-3px) scale(1.05); }
+        .ai-panel {
+            position: fixed; bottom: 88px; inset-inline-end: 20px; z-index: 401;
+            width: 384px; max-width: calc(100vw - 32px); height: 540px; max-height: calc(100vh - 150px);
+            display: none; flex-direction: column; overflow: hidden;
+            background: linear-gradient(165deg, #121c31, #0a111f);
+            border: 1px solid rgba(255,255,255,0.10); border-radius: 20px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.60);
+        }
+        .ai-panel.open { display: flex; animation: modalPop 0.24s cubic-bezier(0.34, 1.4, 0.64, 1); }
+        .ai-head {
+            display: flex; align-items: center; gap: 10px;
+            padding: 15px 16px; border-bottom: 1px solid rgba(255,255,255,0.08);
+            background: radial-gradient(300px 80px at 50% -30px, rgba(47,230,168,0.14), transparent 70%);
+        }
+        .ai-dot { width: 9px; height: 9px; border-radius: 50%; background: #2fe6a8; box-shadow: 0 0 12px #2fe6a8; animation: pulse 1.8s ease-in-out infinite; flex-shrink: 0; }
+        .ai-head b { display: block; font-size: 13.5px; color: var(--text); }
+        .ai-head small { display: block; font-family: var(--mono); font-size: 10px; color: var(--text-3); margin-top: 2px; letter-spacing: 0.5px; }
+        .ai-close { margin-inline-start: auto; cursor: pointer; color: var(--text-3); font-size: 14px; padding: 4px 8px; border-radius: 8px; }
+        .ai-close:hover { color: var(--red); background: rgba(255,77,94,0.1); }
+        .ai-msgs { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+        .ai-msg { max-width: 88%; padding: 10px 13px; border-radius: 14px; font-size: 12.5px; line-height: 1.75; white-space: pre-wrap; word-break: break-word; }
+        .ai-msg.user { align-self: flex-end; background: linear-gradient(135deg, #2fe6a8, #1fb884); color: #04120d; font-weight: 600; border-end-end-radius: 4px; }
+        .ai-msg.bot { align-self: flex-start; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.07); color: var(--text); border-end-start-radius: 4px; }
+        .ai-msg.err { align-self: center; background: rgba(255,77,94,0.1); border: 1px solid rgba(255,77,94,0.3); color: #ff8a96; font-size: 11.5px; text-align: center; }
+        .ai-typing { display: inline-flex; gap: 4px; padding: 4px 2px; }
+        .ai-typing i { width: 7px; height: 7px; border-radius: 50%; background: #2fe6a8; animation: bounce 1.2s ease-in-out infinite both; }
+        .ai-typing i:nth-child(2) { animation-delay: -0.2s; }
+        .ai-typing i:nth-child(3) { animation-delay: -0.4s; }
+        .ai-chips { display: flex; gap: 6px; flex-wrap: wrap; padding: 0 14px 10px; }
+        .ai-chip { font-size: 11px; font-family: var(--sans); padding: 7px 13px; border-radius: 999px; background: rgba(47,230,168,0.08); border: 1px solid rgba(47,230,168,0.32); color: #2fe6a8; cursor: pointer; transition: 0.18s; }
+        .ai-chip:hover { background: rgba(47,230,168,0.18); transform: translateY(-1px); }
+        .ai-input-row { display: flex; gap: 8px; padding: 12px 14px; border-top: 1px solid rgba(255,255,255,0.08); }
+        .ai-input-row input { flex: 1; min-width: 0; background: rgba(0,0,0,0.32); border: 1px solid rgba(255,255,255,0.10); border-radius: 12px; padding: 11px 13px; color: var(--text); outline: none; font-size: 13px; font-family: var(--sans); }
+        .ai-input-row input:focus { border-color: #2fe6a8; box-shadow: 0 0 0 3px rgba(47,230,168,0.15); }
+        .ai-send { width: 44px; height: 44px; flex-shrink: 0; border: none; border-radius: 12px; background: linear-gradient(135deg, #2fe6a8, #1fb884); color: #04120d; font-size: 17px; cursor: pointer; transition: 0.18s; display: grid; place-items: center; }
+        .ai-send:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(47,230,168,0.35); }
+
+        /* ============ Announcements & counter — text flow, no pills ============ */
+        .ann-bar { display: flex; flex-direction: column; gap: 4px; border-bottom: 1px solid rgba(255,255,255,0.07); padding-bottom: 8px; }
+        .ann-bar .announcement {
+            padding: 8px 6px; font-size: 13px; font-family: var(--sans);
+            display: flex; align-items: center; gap: 10px; font-weight: 500;
+            border-radius: 0; background: none !important;
+            animation: rise 0.3s ease-out both;
+        }
+        .announcement::before { content: '—'; font-size: 12px; opacity: 0.7; }
+        .announcement.green { color: var(--green); }
+        .announcement.red { color: var(--red); }
+        .announcement.blue { color: var(--blue); }
+        .announcement.gold { color: var(--gold); }
+        .visitor-counter {
+            width: fit-content; padding: 4px 2px; border-radius: 0;
+            font-family: var(--mono); font-size: 10.5px; color: var(--text-3);
+            background: none; letter-spacing: 0.7px; display: none;
+        }
+        .light .visitor-counter { background: none; }
+
+        footer {
+            text-align: center; color: var(--text-3); font-size: 11px;
+            padding: 26px 12px 12px; font-family: var(--mono); letter-spacing: 0.4px;
+            white-space: pre-line; line-height: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="ticker-wrap" id="tickerWrap">
+        <div class="ticker-track" id="tickerTrack"></div>
+    </div>
+
+    <div class="top-bar">
+        <div class="logo-wrap" id="topTitle">
+            <span class="logo-mark">
+                <svg width="38" height="38" viewBox="0 0 120 92" fill="none">
+                    <defs>
+                        <linearGradient id="logoArrow" x1="0" y1="1" x2="1" y2="0">
+                            <stop offset="0" stop-color="#1e9e34"/>
+                            <stop offset="0.55" stop-color="#3fd44f"/>
+                            <stop offset="1" stop-color="#8bf07a"/>
+                        </linearGradient>
+                        <linearGradient id="logoWave" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0" stop-color="#1a3a8f"/>
+                            <stop offset="1" stop-color="#4d8dff"/>
+                        </linearGradient>
+                    </defs>
+                    <!-- candlestick ticks -->
+                    <g stroke-linecap="round" stroke-width="3">
+                        <line x1="30" y1="50" x2="30" y2="60" stroke="#3fd44f"/>
+                        <line x1="42" y1="42" x2="42" y2="53" stroke="#3fd44f"/>
+                        <line x1="54" y1="34" x2="54" y2="46" stroke="#3fd44f"/>
+                        <line x1="66" y1="28" x2="66" y2="40" stroke="#3fd44f"/>
+                        <line x1="36" y1="58" x2="36" y2="66" stroke="#4d8dff"/>
+                        <line x1="60" y1="48" x2="60" y2="55" stroke="#4d8dff"/>
+                    </g>
+                    <!-- network -->
+                    <g stroke="#2a9e2a" stroke-width="1.4" opacity="0.75">
+                        <line x1="76" y1="62" x2="90" y2="57"/>
+                        <line x1="90" y1="57" x2="101" y2="64"/>
+                        <line x1="76" y1="62" x2="86" y2="72"/>
+                        <line x1="86" y1="72" x2="99" y2="75"/>
+                        <line x1="90" y1="57" x2="86" y2="72"/>
+                        <line x1="101" y1="64" x2="99" y2="75"/>
+                        <line x1="101" y1="64" x2="110" y2="70"/>
+                    </g>
+                    <g>
+                        <circle cx="76" cy="62" r="3" fill="#1a3a8f"/>
+                        <circle cx="90" cy="57" r="3" fill="#2a9e2a"/>
+                        <circle cx="101" cy="64" r="3" fill="#2a9e2a"/>
+                        <circle cx="86" cy="72" r="3" fill="#1a3a8f"/>
+                        <circle cx="99" cy="75" r="3" fill="#1a3a8f"/>
+                        <circle cx="110" cy="70" r="2.6" fill="#2a9e2a"/>
+                    </g>
+                    <!-- blue wave -->
+                    <path d="M6 78 C22 70 30 64 41 65 C53 66 57 54 69 50 C81 46 86 52 98 46" stroke="url(#logoWave)" stroke-width="5" stroke-linecap="round"/>
+                    <!-- green arrow -->
+                    <path d="M10 82 C30 72 43 68 57 61 C73 53 83 40 96 24" stroke="url(#logoArrow)" stroke-width="7.5" stroke-linecap="round"/>
+                    <path d="M94 26 L101 8 L114 27 Z" fill="url(#logoArrow)"/>
+                    <!-- glow dots -->
+                    <circle cx="57" cy="61" r="3" fill="#ffffff"/>
+                    <circle cx="79" cy="43" r="2.4" fill="#ffffff" opacity="0.9"/>
+                </svg>
+            </span>
+            <span>
+                <span class="logo-text en-logo"><span class="l1">Stock</span> <span class="l2">Prediction</span></span>
+                <span class="logo-sub">AI-Powered Forecasting Platform</span>
+            </span>
+        </div>
+        <div class="top-controls">
+            <span class="top-btn" id="recBtn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg>
+                <span id="recBtnText">توصية</span>
+            </span>
+            <div class="lang-dropdown" id="langDropdown">
+                <span class="top-btn" id="langMainBtn">🇸🇦</span>
+                <div class="lang-dropdown-menu" id="langMenu">
+                    <span class="lang-opt active" data-lang="ar">🇸🇦 العربية</span>
+                    <span class="lang-opt" data-lang="fr">🇫🇷 Français</span>
+                    <span class="lang-opt" data-lang="en">🇬🇧 English</span>
+                </div>
+            </div>
+            <span class="top-btn" id="themeToggle"><svg id="themeIcon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
+            <span class="mobile-sidebar-btn" id="mobileMenuBtn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="layout">
+            <div class="sidebar soft" id="sidebar">
+                <div class="sidebar-header">
+                    <h3 id="sbTitle">الأسواق</h3>
+                    <span class="sidebar-close" id="sidebarClose">✕</span>
+                </div>
+                <div id="marketList"></div>
+            </div>
+
+            <div class="main-area">
+                <div class="ann-bar" id="annBar"></div>
+                <div class="visitor-counter" id="visitorCounter"></div>
+
+                <div class="search-row soft">
+                    <input type="text" id="symbolInput" placeholder="AAPL" value="AAPL" dir="ltr">
+                    <span class="sym-hint">SYMBOL</span>
+                    <button id="predictBtn">تحليل</button>
+                </div>
+                <div class="error-box" id="errorBox"></div>
+                <div class="loader soft" id="loader">
+                    <span></span><span></span><span></span>
+                    <p id="loaderText">جاري التحليل...</p>
+                </div>
+
+                <div id="resultsArea" style="display:none;">
+                    <div class="price-bar" id="priceBar">
+                        <div class="price-left">
+                            <span class="pb-logo-wrap">
+                                <img class="pb-logo" id="pbLogo" alt="" style="display:none;" onerror="logoFailover(this)">
+                                <span class="pb-fb" id="pbFallback">A</span>
+                            </span>
+                            <span class="pb-symbol" id="pbSymbol">-</span>
+                            <span class="pb-price" id="pbPrice">-</span>
+                            <span class="pb-change" id="pbChange">-</span>
+                        </div>
+                        <span class="pb-time" id="pbTime">-</span>
+                    </div>
+
+                    <div class="tf-tabs" id="tfTabs">
+                        <div class="tf-tab active" data-tf="daily" id="tfDaily">يومي</div>
+                        <div class="tf-tab" data-tf="weekly" id="tfWeekly">أسبوعي</div>
+                        <div class="tf-tab" data-tf="monthly" id="tfMonthly">شهري</div>
+                        <div class="tf-tab" data-tf="yearly" id="tfYearly">سنوي</div>
+                    </div>
+
+                    <div class="chart-wrap soft" id="chartContainer">
+                        <canvas id="priceChart"></canvas>
+                    </div>
+
+                    <div class="cards-grid" id="predCards">
+                        <div class="pred-card" data-tf="daily">
+                            <div class="pc-label" id="pcLabelDaily">يومي</div>
+                            <div class="pc-price" id="val_daily">-</div>
+                            <div class="pc-change" id="chg_daily">-</div>
+                            <div class="pc-conf" id="conf_daily">-</div>
+                            <div class="conf-meter"><i id="meter_daily"></i></div>
+                        </div>
+                        <div class="pred-card" data-tf="weekly">
+                            <div class="pc-label" id="pcLabelWeekly">أسبوعي</div>
+                            <div class="pc-price" id="val_weekly">-</div>
+                            <div class="pc-change" id="chg_weekly">-</div>
+                            <div class="pc-conf" id="conf_weekly">-</div>
+                            <div class="conf-meter"><i id="meter_weekly"></i></div>
+                        </div>
+                        <div class="pred-card" data-tf="monthly">
+                            <div class="pc-label" id="pcLabelMonthly">شهري</div>
+                            <div class="pc-price" id="val_monthly">-</div>
+                            <div class="pc-change" id="chg_monthly">-</div>
+                            <div class="pc-conf" id="conf_monthly">-</div>
+                            <div class="conf-meter"><i id="meter_monthly"></i></div>
+                        </div>
+                        <div class="pred-card" data-tf="yearly">
+                            <div class="pc-label" id="pcLabelYearly">سنوي</div>
+                            <div class="pc-price" id="val_yearly">-</div>
+                            <div class="pc-change" id="chg_yearly">-</div>
+                            <div class="pc-conf" id="conf_yearly">-</div>
+                            <div class="conf-meter"><i id="meter_yearly"></i></div>
+                        </div>
+                    </div>
+
+                    <div class="table-wrap soft" id="predTable">
+                        <div class="panel-head">
+                            <span class="ph-left" id="tableTitle">توقعات</span>
+                            <span class="ph-tag" id="phSymbol">AI FORECAST</span>
+                        </div>
+                        <div class="table-scroll">
+                            <table>
+                                <thead>
+                                    <tr><th id="thDate">التاريخ</th><th id="thPrice">السعر المتوقع</th><th id="thChange">التغير %</th><th id="thSignal">الإشارة</th></tr>
+                                </thead>
+                                <tbody id="predBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer id="footerText"></footer>
+    </div>
+
+    <div class="rec-modal-overlay" id="recOverlay">
+        <div class="rec-modal">
+            <h2 id="recTitle">توصية</h2>
+            <div class="rec-sub" id="recSub">تحليل 4 فترات</div>
+            <div class="rec-big" id="recBig">-</div>
+            <div id="recRows"></div>
+            <div class="rec-footer">
+                <button class="rec-close" id="recClose">إغلاق</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <button class="ai-fab" id="aiFab" aria-label="AI chat">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.6 2.6 2.4 4.4 5 5-2.6.6-4.4 2.4-5 5-.6-2.6-2.4-4.4-5-5 2.6-.6 4.4-2.4 5-5z"/><path d="M19 3.5c.3 1.3 1.2 2.2 2.5 2.5-1.3.3-2.2 1.2-2.5 2.5-.3-1.3-1.2-2.2-2.5-2.5 1.3-.3 2.2-1.2 2.5-2.5z"/><path d="M5 16.5c.4 1.6 1.4 2.6 3 3-1.6.4-2.6 1.4-3 3-.4-1.6-1.4-2.6-3-3 1.6-.4 2.6-1.4 3-3z"/></svg>
+    </button>
+    <div class="ai-panel" id="aiPanel">
+        <div class="ai-head">
+            <span class="ai-dot"></span>
+            <span><b id="aiTitle">مساعد AI</b><small id="aiSub">AAPL · AI</small></span>
+            <span class="ai-close" id="aiClose">✕</span>
+        </div>
+        <div class="ai-msgs" id="aiMsgs"></div>
+        <div class="ai-chips" id="aiChips"></div>
+        <div class="ai-input-row">
+            <input id="aiInput" placeholder="سول على السوق...">
+            <button class="ai-send" id="aiSend">➤</button>
+        </div>
+    </div>
+
+    <script>
+        function renderAnnouncements() {
+            var bar = document.getElementById('annBar');
+            var anns = window.__ANNOUNCEMENTS__ || [];
+            if (!bar || anns.length === 0) { if (bar) bar.style.display = 'none'; return; }
+            bar.innerHTML = anns.map(function(a) {
+                return '<div class="announcement ' + a.color + '">' + (a.text) + '</div>';
+            }).join('');
+        }
+        function renderCounter() {
+            var c = window.__COUNTER__;
+            if (!c || !c.enabled) return;
+            var el = document.getElementById('visitorCounter');
+            if (!el) return;
+            el.style.display = 'block';
+            el.textContent = '👁 ' + (c.count || 0) + ' visits';
+        }
+        renderAnnouncements();
+        renderCounter();
+
+        const LANG = {
+            ar: {
+                title: '', searchPH: 'AAPL', predict: 'تحليل',
+                loading: 'جاري التحليل...', daily: 'يومي', weekly: 'أسبوعي', monthly: 'شهري', yearly: 'سنوي',
+                tblTitle: 'توقعات', thDate: 'التاريخ', thPrice: 'السعر المتوقع', thChange: 'التغير %', thSignal: 'الإشارة',
+                conf: 'ثقة', lastUp: 'آخر تحديث', expected: 'متوقع',
+                strongBuy: 'شراء قوي', buy: 'شراء', neutral: 'محايد', sell: 'بيع', strongSell: 'بيع قوي',
+                footer: 'Stock Predictor — تحليل ذكي للأسهم والعملات الرقمية\n⚠ تنبيه: هذه التحليلات تعليمية وليست نصيحة استثمارية',
+                symbolCount: 'رمز', markets: 'الأسواق', errConn: 'خطأ في الاتصال بالخادم',
+                week: 'أسبوع', month: 'شهر', year: 'سنة',
+                recBtn: 'توصية', recTitle: 'توصية', recSub: 'تحليل 4 فترات', recClose: 'إغلاق',
+                recOverall: 'التوصية العامة', recConf: 'الثقة',
+                aiTitle: 'مساعد AI', aiPH: 'سول على السوق...',
+                aiHello: 'سلام! أنا مساعد التداول بالذكاء الاصطناعي، وكنشوف السوق ديال {{SYM}} مباشرة. سولني: واش تدخل دابا؟ شنو التوقع؟ ولا أي سؤال آخر.',
+                chips: ['واش ندخل دابا؟', 'شنو توقع السعر؟', 'شنو المخاطر؟']
+            },
+            fr: {
+                title: '', searchPH: 'AAPL', predict: 'Analyser',
+                loading: 'Analyse en cours...', daily: 'Quotidien', weekly: 'Hebdomadaire', monthly: 'Mensuel', yearly: 'Annuel',
+                tblTitle: 'Prévisions', thDate: 'Date', thPrice: 'Prix prévu', thChange: 'Variation %', thSignal: 'Signal',
+                conf: 'Confiance', lastUp: 'Dernière mise à jour', expected: 'Prévu',
+                strongBuy: 'Achat fort', buy: 'Achat', neutral: 'Neutre', sell: 'Vente', strongSell: 'Vente forte',
+                footer: 'Stock Predictor — Analyse boursière propulsée par l\'IA\n⚠ Avertissement : les prévisions sont éducatives et ne constituent pas un conseil en investissement.',
+                symbolCount: 'symboles', markets: 'Marchés', errConn: 'Erreur de connexion',
+                week: 'Semaine', month: 'Mois', year: 'Année',
+                recBtn: 'Avis', recTitle: 'Avis', recSub: 'Analyse 4 périodes', recClose: 'Fermer',
+                recOverall: 'Avis général', recConf: 'Confiance',
+                aiTitle: 'Assistant IA', aiPH: 'Posez votre question...',
+                aiHello: 'Salut ! Je suis votre assistant trading IA, connecté au marché de {{SYM}}. Demandez-moi : faut-il entrer maintenant ? Quelle prévision ? Ou toute autre question.',
+                chips: ['Faut-il entrer maintenant ?', 'Quelle prévision de prix ?', 'Quels sont les risques ?']
+            },
+            en: {
+                title: '', searchPH: 'AAPL', predict: 'Analyze',
+                loading: 'Analyzing...', daily: 'Daily', weekly: 'Weekly', monthly: 'Monthly', yearly: 'Yearly',
+                tblTitle: 'Predictions', thDate: 'Date', thPrice: 'Predicted Price', thChange: 'Change %', thSignal: 'Signal',
+                conf: 'Confidence', lastUp: 'Last update', expected: 'Expected',
+                strongBuy: 'Strong Buy', buy: 'Buy', neutral: 'Neutral', sell: 'Sell', strongSell: 'Strong Sell',
+                footer: 'Stock Predictor — AI-powered market analysis\n⚠ Disclaimer: forecasts are educational and not investment advice.',
+                symbolCount: 'symbols', markets: 'Markets', errConn: 'Connection error',
+                week: 'Week', month: 'Month', year: 'Year',
+                recBtn: 'Advice', recTitle: 'Advice', recSub: '4-period analysis', recClose: 'Close',
+                recOverall: 'Overall advice', recConf: 'Confidence',
+                aiTitle: 'AI Assistant', aiPH: 'Ask about the market...',
+                aiHello: 'Hi! I am your AI trading assistant, watching {{SYM}} live. Ask me: should I enter now? What is the forecast? Or anything else.',
+                chips: ['Should I enter now?', 'What is the price forecast?', 'What are the risks?']
+            }
+        };
+
+        let lang = localStorage.getItem('lang') || 'ar';
+        let theme = localStorage.getItem('theme') || 'dark';
+        let chartInstance = null, currentSymbol = 'AAPL', currentData = null, ws = null, selectedTF = 'daily';
+        let tickerPrices = {};
+        let marketsTimezone = {};
+        let marketsTZMap = {};
+
+        function fmtTZ(date, tz, opts) {
+            try { return new Intl.DateTimeFormat('en-US', { timeZone: tz, ...opts }).format(date); } catch(e) { return date.toLocaleTimeString(); }
+        }
+
+        function tzTime(tz) {
+            const d = new Date();
+            try {
+                return new Intl.DateTimeFormat('en-US', {
+                    timeZone: tz,
+                    hour: '2-digit', minute: '2-digit', second: '2-digit',
+                    hour12: false,
+                    timeZoneName: 'short'
+                }).format(d);
+            } catch(e) { return d.toLocaleTimeString(); }
+        }
+
+        function getMarketTimezone(symbol) {
+            return marketsTZMap[symbol] || 'UTC';
+        }
+
+        let mktClockInterval = null;
+
+        /* ============ Company logos: FMP -> Clearbit -> letter avatar ============ */
+        const LOGO_DOMAIN = {
+            AAPL: 'apple.com', TSLA: 'tesla.com', NVDA: 'nvidia.com', MSFT: 'microsoft.com',
+            GOOGL: 'google.com', AMZN: 'amazon.com', META: 'meta.com', JPM: 'jpmorganchase.com',
+            V: 'visa.com', JNJ: 'jnj.com', WMT: 'walmart.com', PG: 'pg.com', MA: 'mastercard.com',
+            HD: 'homedepot.com', DIS: 'thewaltdisneycompany.com', BAC: 'bankofamerica.com',
+            ADBE: 'adobe.com', NFLX: 'netflix.com', CRM: 'salesforce.com', AMD: 'amd.com',
+            INTC: 'intel.com', PYPL: 'paypal.com', IBM: 'ibm.com', BA: 'boeing.com',
+            CAT: 'cat.com', XOM: 'exxonmobil.com', CVX: 'chevron.com', BABA: 'alibaba.com',
+            TSM: 'tsmc.com', SAP: 'sap.com', ASML: 'asml.com', MC: 'lvmh.com',
+            OR: 'loreal.com', AIR: 'airbus.com', BMW: 'bmw.com', RACE: 'ferrari.com',
+            NESN: 'nestle.com', TCEHY: 'tencent.com', BRK: 'berkshirehathaway.com',
+            VOW3: 'volkswagen.com', DTE: 'telekom.com', ALV: 'allianz.com', UBSG: 'ubs.com',
+            BMW: 'bmw.com', ENEL: 'enel.com', ISP: 'intesasanpaolo.com'
+        };
+        const COIN_ICON = {
+            BTC: 'btc', ETH: 'eth', SOL: 'sol', XRP: 'xrp', ADA: 'ada', DOGE: 'doge',
+            DOT: 'dot', AVAX: 'avax', LINK: 'link', MATIC: 'matic', ATOM: 'atom',
+            LTC: 'ltc', BCH: 'bch', XLM: 'xlm', UNI: 'uni', BNB: 'bnb', TRX: 'trx', SHIB: 'shib'
+        };
+        function logoBase(sym) {
+            return String(sym || '').split('.')[0].split('=')[0].split('/')[0].toUpperCase();
+        }
+        function logoURL(sym) {
+            var b = logoBase(sym);
+            var coin = b.split('-')[0];
+            if (coin.indexOf('UNI') === 0) coin = 'UNI';
+            if (COIN_ICON[coin]) {
+                return { src: 'https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/128/color/' + COIN_ICON[coin] + '.png', base: coin, kind: 'coin' };
+            }
+            if (String(sym).indexOf('=') > -1 || String(sym).indexOf('/') > -1) return null;
+            if (String(sym).endsWith('=F')) return null;
+            return { src: 'https://financialmodelingprep.com/image-stock/' + b + '.png', base: b.split('-')[0], kind: 'stock' };
+        }
+        function avatarLetters(sym) {
+            var b = logoBase(sym).split('-')[0];
+            return (b.substring(0, 2) || '•').toUpperCase();
+        }
+        function logoFailover(el) {
+            var step = el.getAttribute('data-step') || '1';
+            var base = el.getAttribute('data-base') || '';
+            if (step === '1' && LOGO_DOMAIN[base]) {
+                el.setAttribute('data-step', '2');
+                el.src = 'https://logo.clearbit.com/' + LOGO_DOMAIN[base] + '?size=64';
+                return;
+            }
+            el.style.display = 'none';
+            var fb = el.parentElement ? el.parentElement.querySelector('.logo-fb, .pb-fb') : null;
+            if (fb) fb.style.display = 'flex';
+        }
+        function logoInner(sym) {
+            var info = logoURL(sym);
+            if (!info) return '<span class="logo-fb" style="display:flex;">' + avatarLetters(sym) + '</span>';
+            return '<img class="pill-logo" loading="lazy" alt="" data-base="' + info.base + '" src="' + info.src + '" onerror="logoFailover(this)">'
+                + '<span class="logo-fb">' + avatarLetters(sym) + '</span>';
+        }
+        function setHeroLogo(sym) {
+            var img = document.getElementById('pbLogo');
+            var fb = document.getElementById('pbFallback');
+            if (!img || !fb) return;
+            var info = logoURL(sym);
+            fb.textContent = avatarLetters(sym);
+            if (!info) { img.style.display = 'none'; fb.style.display = 'flex'; return; }
+            img.setAttribute('data-step', '1');
+            img.setAttribute('data-base', info.base);
+            img.style.display = 'block';
+            fb.style.display = 'none';
+            img.src = info.src;
+        }
+
+        function isMarketOpen(tz) {
+            try {
+                var now = new Date();
+                var opts = { timeZone: tz, hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, weekday: 'short' };
+                var parts = new Intl.DateTimeFormat('en-US', opts).formatToParts(now);
+                var h = 0, day = '';
+                parts.forEach(function(p) {
+                    if (p.type === 'hour') h = parseInt(p.value);
+                    if (p.type === 'weekday') day = p.value;
+                });
+                var isWeekday = !['Sat', 'Sun'].includes(day);
+                var isHours = h >= 9 && h < 17;
+                return isWeekday && isHours;
+            } catch(e) { return false; }
+        }
+
+        function updateAllMarketClocks() {
+            document.querySelectorAll('.mkt-clock').forEach(function(el) {
+                const tz = el.getAttribute('data-tz');
+                if (tz) el.textContent = tzTime(tz);
+            });
+            document.querySelectorAll('.mkt-dot').forEach(function(el) {
+                var clock = el.parentElement.querySelector('.mkt-clock');
+                var tz = clock ? clock.getAttribute('data-tz') : null;
+                if (tz) {
+                    el.className = 'mkt-dot ' + (isMarketOpen(tz) ? 'open' : 'closed');
+                }
+            });
+        }
+
+        const htmlTag = document.getElementById('htmlTag');
+        const dirMap = { ar: 'rtl', fr: 'ltr', en: 'ltr' };
+        const localeMap = { ar: 'ar-DZ', fr: 'fr-FR', en: 'en-US' };
+
+        function t(key) { const keys = key.split('.'); let v = LANG[lang]; for (const k of keys) v = v?.[k]; return v || key; }
+
+        function applyLang(l) {
+            lang = l; localStorage.setItem('lang', l);
+            htmlTag.setAttribute('dir', dirMap[l]); htmlTag.setAttribute('lang', l);
+            document.getElementById('langMainBtn').textContent = { ar: '🇸🇦', fr: '🇫🇷', en: '🇬🇧' }[l];
+            document.querySelectorAll('.lang-opt').forEach(o => o.classList.toggle('active', o.dataset.lang === l));
+            document.getElementById('langMenu').classList.remove('open');
+            translateUI();
+        }
+
+        function translateUI() {
+            const ids = {
+                symbolInput: {attr: 'placeholder', key: 'searchPH'},
+                aiInput: {attr: 'placeholder', key: 'aiPH'},
+                predictBtn: 'predict', loaderText: 'loading', tfDaily: 'daily', tfWeekly: 'weekly',
+                tfMonthly: 'monthly', tfYearly: 'yearly', tableTitle: 'tblTitle',
+                thDate: 'thDate', thPrice: 'thPrice', thChange: 'thChange', thSignal: 'thSignal',
+                pcLabelDaily: 'daily', pcLabelWeekly: 'weekly', pcLabelMonthly: 'monthly', pcLabelYearly: 'yearly',
+                footerText: 'footer', recBtnText: 'recBtn', recClose: 'recClose', recTitle: 'recTitle', recSub: 'recSub',
+                sbTitle: 'markets', aiTitle: 'aiTitle'
+            };
+            for (const [elId, key] of Object.entries(ids)) {
+                const el = document.getElementById(elId);
+                if (!el) continue;
+                if (typeof key === 'object') {
+                    if (key.attr === 'placeholder') el.placeholder = t(key.key);
+                } else {
+                    el.textContent = t(key);
+                }
+            }
+            if (currentData) { renderCards(currentData); renderPriceBar(currentData, currentSymbol); updateForTimeframe(selectedTF); }
+            if (window.__aiReady && typeof aiRenderChips === 'function') { aiRenderChips(); }
+        }
+
+        function applyTheme(th) {
+            theme = th; localStorage.setItem('theme', th);
+            document.body.classList.toggle('light', th === 'light');
+            var icon = document.getElementById('themeIcon');
+            if (th === 'light') {
+                icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+            } else {
+                icon.innerHTML = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+            }
+        }
+
+        applyLang(lang);
+        applyTheme(theme);
+
+        document.getElementById('themeToggle').addEventListener('click', () => applyTheme(theme === 'dark' ? 'light' : 'dark'));
+
+        document.getElementById('langMainBtn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            document.getElementById('langMenu').classList.toggle('open');
+        });
+        document.querySelectorAll('.lang-opt').forEach(o => {
+            o.addEventListener('click', () => applyLang(o.dataset.lang));
+        });
+        document.addEventListener('click', () => document.getElementById('langMenu').classList.remove('open'));
+
+        document.getElementById('recBtn').addEventListener('click', showRecommendation);
+        document.getElementById('recClose').addEventListener('click', () => document.getElementById('recOverlay').classList.remove('open'));
+        document.getElementById('recOverlay').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) document.getElementById('recOverlay').classList.remove('open');
+        });
+
+        /* ============ AI chat (OpenRouter free model, market-aware) ============ */
+        let aiHistory = [], aiGreeted = false, aiBusy = false;
+        const aiPanel = document.getElementById('aiPanel');
+        const aiMsgs = document.getElementById('aiMsgs');
+        const aiChips = document.getElementById('aiChips');
+        const aiInput = document.getElementById('aiInput');
+
+        function aiEscape(s) {
+            return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+        function aiFormat(s) {
+            var h = aiEscape(s);
+            h = h.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+            h = h.replace(/\n/g, '<br>');
+            return h;
+        }
+        function aiAddMsg(html, who) {
+            var d = document.createElement('div');
+            d.className = 'ai-msg ' + who;
+            d.innerHTML = html;
+            aiMsgs.appendChild(d);
+            aiMsgs.scrollTop = aiMsgs.scrollHeight;
+            return d;
+        }
+        function aiRenderChips() {
+            var chips = LANG[lang].chips || [];
+            aiChips.innerHTML = '';
+            chips.forEach(function(c) {
+                var b = document.createElement('span');
+                b.className = 'ai-chip';
+                b.textContent = c;
+                b.addEventListener('click', function() { aiAsk(c); });
+                aiChips.appendChild(b);
+            });
+        }
+        function aiToggle(force) {
+            var open = (typeof force === 'boolean') ? force : !aiPanel.classList.contains('open');
+            aiPanel.classList.toggle('open', open);
+            if (open && !aiGreeted) {
+                aiGreeted = true;
+                aiRenderChips();
+                aiAddMsg(aiEscape(t('aiHello').replace('{{SYM}}', currentSymbol)), 'bot');
+            } else if (open) {
+                aiRenderChips();
+            }
+        }
+        function aiMarket() {
+            if (!currentData) return '';
+            var parts = [];
+            if (currentData.current_price) parts.push('live $' + currentData.current_price);
+            ['daily', 'weekly', 'monthly', 'yearly'].forEach(function(tf) {
+                var d = currentData[tf];
+                if (d && d.predictions && d.predictions.length) {
+                    var last = d.last_price || currentData.current_price || d.predictions[0];
+                    var pred = d.predictions[d.predictions.length - 1];
+                    var chg = ((pred - last) / last * 100).toFixed(2);
+                    parts.push(tf + ' target $' + pred.toFixed(2) + ' (' + (chg >= 0 ? '+' : '') + chg + '%, conf ' + (d.confidence || 0) + '%)');
+                }
+            });
+            return parts.join(' | ');
+        }
+        async function aiAsk(q) {
+            var text = (q !== undefined ? q : aiInput.value).trim();
+            if (!text || aiBusy) return;
+            aiInput.value = '';
+            if (!aiPanel.classList.contains('open')) aiToggle(true);
+            aiAddMsg(aiEscape(text), 'user');
+            aiHistory.push({ role: 'user', content: text });
+            aiBusy = true;
+            var typing = aiAddMsg('<span class="ai-typing"><i></i><i></i><i></i></span>', 'bot');
+            try {
+                var res = await fetch('/api/ai-chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: text, symbol: currentSymbol, lang: lang, history: aiHistory.slice(-8), market: aiMarket() })
+                });
+                var data = await res.json();
+                typing.remove();
+                if (data.reply) {
+                    aiAddMsg(aiFormat(data.reply), 'bot');
+                    aiHistory.push({ role: 'assistant', content: data.reply });
+                } else {
+                    aiAddMsg(aiEscape(data.error || t('errConn')), 'err');
+                }
+            } catch (e) {
+                typing.remove();
+                aiAddMsg(aiEscape(t('errConn')), 'err');
+            } finally {
+                aiBusy = false;
+                aiMsgs.scrollTop = aiMsgs.scrollHeight;
+            }
+        }
+        document.getElementById('aiFab').addEventListener('click', function() { aiToggle(); });
+        document.getElementById('aiClose').addEventListener('click', function() { aiToggle(false); });
+        document.getElementById('aiSend').addEventListener('click', function() { aiAsk(); });
+        aiInput.addEventListener('keyup', function(e) { if (e.key === 'Enter') aiAsk(); });
+        window.__aiReady = true;
+
+        function showRecommendation() {
+            if (!currentData) return;
+            const overlay = document.getElementById('recOverlay');
+            const rows = document.getElementById('recRows');
+            rows.innerHTML = '';
+            let signals = [];
+            let tfs = ['daily', 'weekly', 'monthly', 'yearly'];
+            let tfLabels = { daily: t('daily'), weekly: t('weekly'), monthly: t('monthly'), yearly: t('yearly') };
+            tfs.forEach(tf => {
+                const d = currentData[tf];
+                if (!d || !d.predictions || d.predictions.length === 0) return;
+                const last = d.last_price || currentData.current_price || d.predictions[0];
+                const pred = d.predictions[d.predictions.length - 1];
+                const chg = ((pred - last) / last * 100);
+                const conf = d.confidence || 0;
+                signals.push(chg);
+                const row = document.createElement('div');
+                row.className = 'rec-row';
+                row.innerHTML = `<span class="rec-tf">${tfLabels[tf]}</span><span class="rec-val ${chg>=0?'up':'down'}">${chg>=0?'▲':'▼'} ${Math.abs(chg).toFixed(1)}%</span><span class="rec-cf">${t('recConf')}: ${conf}%</span>`;
+                rows.appendChild(row);
+            });
+            if (signals.length === 0) return;
+            const avg = signals.reduce((a,b) => a+b, 0) / signals.length;
+            let label, cls;
+            if (avg >= 4) { label = t('strongBuy'); cls = 'strong_buy'; }
+            else if (avg >= 1) { label = t('buy'); cls = 'buy'; }
+            else if (avg <= -4) { label = t('strongSell'); cls = 'strong_sell'; }
+            else if (avg <= -1) { label = t('sell'); cls = 'sell'; }
+            else { label = t('neutral'); cls = 'neutral'; }
+            const big = document.getElementById('recBig');
+            big.textContent = label;
+            big.className = 'rec-big ' + cls;
+            overlay.classList.add('open');
+        }
+
+        function connectWS() {
+            try {
+                const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+                ws = new WebSocket(`${protocol}//${location.host}/ws`);
+                ws.onmessage = (event) => {
+                    try {
+                        const msg = JSON.parse(event.data);
+                        if (msg.type === 'prices' && msg.data) {
+                            Object.assign(tickerPrices, msg.data);
+                            updateTicker(msg.data);
+                            updateWatchlistPrices(msg.data);
+                        }
+                    } catch(e) {}
+                };
+                ws.onclose = () => setTimeout(connectWS, 5000);
+                ws.onerror = () => {};
+            } catch(e) {}
+        }
+
+        function updateTicker(prices) {
+            const track = document.getElementById('tickerTrack');
+            const items = Object.entries(prices).slice(0, 30).map(([sym, pr]) => {
+                return `<span class="ticker-item"><span class="sym">${sym}</span><span class="pr">$${typeof pr === 'number' ? pr.toFixed(2) : pr}</span></span>`;
+            }).join('');
+            track.innerHTML = items;
+        }
+
+        function updateWatchlistPrices(prices) {
+            Object.keys(prices).forEach(function(sym) {
+                var el = document.querySelector('.symbol-pill[data-sym="' + sym + '"] .pill-price');
+                if (el && typeof prices[sym] === 'number') {
+                    el.textContent = '$' + prices[sym].toFixed(2);
+                }
+            });
+        }
+
+        connectWS();
+
+        setInterval(function() {
+            if (currentSymbol) {
+                var tz = getMarketTimezone(currentSymbol);
+                document.getElementById('pbTime').textContent = t('lastUp') + ': ' + fmtTZ(new Date(), tz, {hour:'2-digit', minute:'2-digit', second:'2-digit', hour12: false}) + ' ' + tz.split('/').pop().replace('_',' ');
+            }
+        }, 1000);
+
+        async function loadMarkets() {
+            try {
+                const res = await fetch('/markets');
+                const markets = await res.json();
+                const container = document.getElementById('marketList');
+                container.innerHTML = '';
+                Object.entries(markets).forEach(([key, market]) => {
+                    const tz = market.timezone || 'UTC';
+                    marketsTimezone[key] = tz;
+                    market.symbols.forEach(function(s) { marketsTZMap[s] = tz; });
+                    const group = document.createElement('div');
+                    group.className = 'market-group';
+                    group.innerHTML = `
+                        <div class="market-title" data-market="${key}">
+                            <span><span class="mkt-dot ${isMarketOpen(tz) ? 'open' : 'closed'}"></span><span class="mkt-clock" data-tz="${tz}">${tzTime(tz)}</span> ${market.name} (${market.symbols.length})</span>
+                            <span class="arrow">▸</span>
+                        </div>
+                        <div class="symbol-list" data-market="${key}">
+                            ${market.symbols.map(s => `<span class="symbol-pill" data-sym="${s}"><span style="display:flex;align-items:center;gap:8px;min-width:0;">${logoInner(s)}<span>${s}</span></span><span class="pill-price">—</span></span>`).join('')}
+                        </div>
+                    `;
+                    container.appendChild(group);
+                });
+                if (mktClockInterval) clearInterval(mktClockInterval);
+                mktClockInterval = setInterval(updateAllMarketClocks, 1000);
+            } catch(e) {}
+        }
+        loadMarkets();
+
+        document.getElementById('marketList').addEventListener('click', function(e) {
+            var title = e.target.closest('.market-title');
+            if (title) {
+                var list = title.nextElementSibling;
+                if (list && list.classList.contains('symbol-list')) {
+                    list.classList.toggle('open');
+                    var arrow = title.querySelector('.arrow');
+                    if (arrow) {
+                        arrow.textContent = list.classList.contains('open') ? '▾' : '▸';
+                        arrow.style.transform = list.classList.contains('open') ? 'rotate(90deg)' : 'none';
+                    }
+                }
+                return;
+            }
+            var pill = e.target.closest('.symbol-pill');
+            if (pill) {
+                var sym = pill.getAttribute('data-sym');
+                if (sym) searchSym(sym);
+            }
+        });
+
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('mobile-open');
+            document.getElementById('sidebarOverlay').classList.toggle('active');
+        });
+        document.getElementById('sidebarOverlay').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.remove('mobile-open');
+            document.getElementById('sidebarOverlay').classList.remove('active');
+        });
+        document.getElementById('sidebarClose').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.remove('mobile-open');
+            document.getElementById('sidebarOverlay').classList.remove('active');
+        });
+
+        function searchSym(sym) { document.getElementById('symbolInput').value = sym; predict(); }
+
+        var input = document.getElementById('symbolInput');
+        var btn = document.getElementById('predictBtn');
+        var loader = document.getElementById('loader');
+        var errorBox = document.getElementById('errorBox');
+        var resultsArea = document.getElementById('resultsArea');
+
+        input.addEventListener('keyup', function(e) { if (e.key === 'Enter') predict(); });
+        btn.addEventListener('click', predict);
+
+        document.querySelectorAll('.tf-tab').forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.tf-tab').forEach(function(t) { t.classList.remove('active'); });
+                tab.classList.add('active');
+                selectedTF = tab.dataset.tf;
+                updateForTimeframe(selectedTF);
+            });
+        });
+
+        async function predict() {
+            var symbol = input.value.trim().toUpperCase();
+            if (!symbol) return;
+            currentSymbol = symbol;
+            btn.disabled = true;
+            loader.style.display = 'block';
+            errorBox.style.display = 'none';
+            resultsArea.style.display = 'none';
+            try {
+                var res = await fetch('/predict?symbol=' + symbol);
+                var data = await res.json();
+                if (data.error) { showError(data.error); return; }
+                currentData = data;
+                renderPriceBar(data, symbol);
+                renderCards(data);
+                updateForTimeframe(selectedTF);
+                resultsArea.style.display = 'flex';
+                var ph = document.getElementById('phSymbol');
+                if (ph) ph.textContent = symbol + ' · AI FORECAST';
+                var aiSub = document.getElementById('aiSub');
+                if (aiSub) aiSub.textContent = symbol + ' · AI';
+                document.querySelectorAll('.symbol-pill').forEach(function(p) {
+                    p.classList.toggle('active', p.getAttribute('data-sym') === symbol);
+                });
+            } catch (err) { showError(t('errConn'));
+            } finally { btn.disabled = false; loader.style.display = 'none'; }
+        }
+
+        function showError(msg) { errorBox.textContent = msg; errorBox.style.display = 'block'; }
+
+        function renderPriceBar(data, symbol) {
+            document.getElementById('pbSymbol').textContent = symbol;
+            setHeroLogo(symbol);
+            document.getElementById('pbPrice').textContent = data.current_price ? '$' + data.current_price : '-';
+            var tz = getMarketTimezone(symbol);
+            document.getElementById('pbTime').textContent = t('lastUp') + ': ' + fmtTZ(new Date(), tz, {hour:'2-digit', minute:'2-digit', second:'2-digit', hour12: false}) + ' ' + tz.split('/').pop().replace('_',' ');
+            if (data.daily) {
+                var last = data.daily.last_price || data.current_price;
+                var pred = data.daily.predictions[0];
+                if (last && pred) {
+                    var chg = ((pred - last) / last * 100).toFixed(2);
+                    var el = document.getElementById('pbChange');
+                    el.textContent = (chg >= 0 ? '+' : '') + chg + '% ' + t('expected');
+                    el.className = 'pb-change ' + (chg >= 0 ? 'up' : 'down');
+                }
+            }
+        }
+
+        function renderCards(data) {
+            ['daily','weekly','monthly','yearly'].forEach(function(tf) {
+                var card = document.querySelector('.pred-card[data-tf="' + tf + '"]');
+                var d = data[tf];
+                if (d && d.predictions && d.predictions.length > 0) {
+                    card.classList.add('visible');
+                    var last = d.last_price || data.current_price || d.predictions[0];
+                    var pred = d.predictions[d.predictions.length - 1];
+                    var chg = ((pred - last) / last * 100).toFixed(2);
+                    document.getElementById('val_' + tf).textContent = '$' + pred.toFixed(2);
+                    var chgEl = document.getElementById('chg_' + tf);
+                    chgEl.textContent = (chg >= 0 ? '+' : '') + chg + '%';
+                    chgEl.className = 'pc-change ' + (chg >= 0 ? 'up' : 'down');
+                    card.className = 'pred-card visible ' + (chg >= 0 ? 'trend-up' : 'trend-down');
+                    var conf = d.confidence || 0;
+                    var confEl = document.getElementById('conf_' + tf);
+                    confEl.textContent = t('conf') + ': ' + conf + '%';
+                    confEl.className = 'pc-conf ' + (conf >= 65 ? 'high' : conf >= 40 ? 'med' : 'low');
+                    var meter = document.getElementById('meter_' + tf);
+                    if (meter) meter.style.width = Math.max(0, Math.min(100, conf)) + '%';
+                } else {
+                    card.classList.remove('visible');
+                }
+            });
+        }
+
+        function updateForTimeframe(tf) {
+            if (!currentData || !currentData[tf]) return;
+            var d = currentData[tf];
+            document.getElementById('tableTitle').textContent = t('tblTitle');
+            renderChart(d, tf);
+            renderTable(d, tf);
+        }
+
+        function alphaHex(hex, a) {
+            return (/^#[0-9a-fA-F]{6}$/.test(hex)) ? hex + a : hex;
+        }
+
+        /* Build OHLC candles from predicted close prices.
+           open = previous close, wick = volatility of the forecast */
+        function buildOHLC(closes, base) {
+            var out = [];
+            if (!closes || closes.length === 0) return out;
+            var start = (typeof base === 'number' && base > 0) ? base : closes[0];
+            var sum = 0, n = 0, prev = start;
+            closes.forEach(function(c) {
+                if (prev > 0) { sum += Math.abs(c - prev) / prev; n++; }
+                prev = c;
+            });
+            var vol = (n ? sum / n : 0.004) || 0.004;
+            /* شموع طوال بصح: نكبر الجسم 3x ونصغر الذيول باش المحور ما يتوسعش */
+            var BOOST = 3;
+            var o = start;
+            closes.forEach(function(c) {
+                var rawO = o, rawC = c;
+                var c2 = rawC;
+                var o2 = c2 - (rawC - rawO) * BOOST;
+                var swing = (rawO > 0) ? Math.abs(rawC - rawO) / rawO : 0;
+                var w = vol * 1.2 + swing * 0.5 + 0.002;
+                if (!(w > 0.003)) w = 0.003;
+                out.push({
+                    o: o2,
+                    h: Math.max(o2, c2) * (1 + w),
+                    l: Math.min(o2, c2) * (1 - w),
+                    c: c2
+                });
+                o = rawC;
+            });
+            return out;
+        }
+
+        /* Rounded rect path (fallback-safe) */
+        function roundRectPath(g, x, y, w, h, r) {
+            r = Math.max(0, Math.min(r, w / 2, h / 2));
+            g.beginPath();
+            g.moveTo(x + r, y);
+            g.lineTo(x + w - r, y);
+            g.arcTo(x + w, y, x + w, y + r, r);
+            g.lineTo(x + w, y + h - r);
+            g.arcTo(x + w, y + h, x + w - r, y + h, r);
+            g.lineTo(x + r, y + h);
+            g.arcTo(x, y + h, x, y + h - r, r);
+            g.lineTo(x, y + r);
+            g.arcTo(x, y, x + r, y, r);
+            g.closePath();
+        }
+
+        function renderChart(data, tf) {
+            var ctx = document.getElementById('priceChart').getContext('2d');
+            if (chartInstance) chartInstance.destroy();
+            var tz = getMarketTimezone(currentSymbol);
+            var labels = data.predictions.map(function(_, i) {
+                var n = new Date();
+                if (tf === 'daily') return fmtTZ(new Date(n.getTime() + (i+1)*86400000), tz, {day:'2-digit', month:'short', year:'numeric'});
+                if (tf === 'weekly') return t('week') + ' ' + (i+1);
+                if (tf === 'monthly') return t('month') + ' ' + (i+1);
+                return t('year') + ' ' + (i+1);
+            });
+            var last = data.last_price || 0;
+            var style = getComputedStyle(document.body);
+            /* reference look: mint green / coral red like the photo */
+            var upColor = '#2fe6a8';
+            var downColor = '#ff4d5e';
+            var isUp = data.predictions[data.predictions.length - 1] >= last;
+            var borderColor = isUp ? upColor : downColor;
+
+            var ohlc = buildOHLC(data.predictions, last);
+
+            /* Slim pro candles + white dashed zigzag + BUY/SELL tags + tiny values
+               — same vibe as the reference photo */
+            var candlePlugin = {
+                id: 'candlePlugin',
+                afterDatasetsDraw: function(chart) {
+                    if (!ohlc.length) return;
+                    var meta = chart.getDatasetMeta(0);
+                    if (!meta || !meta.data || !meta.data.length) return;
+                    var yScale = chart.scales.y;
+                    var area = chart.chartArea;
+                    var g = chart.ctx;
+                    g.save();
+                    var n = Math.min(ohlc.length, meta.data.length);
+                    var i, d, el, x, bw;
+
+                    /* BUY / SELL signal picks: strongest up moves + strongest down move */
+                    var moves = [];
+                    for (var m = 1; m < n; m++) {
+                        var prevC = ohlc[m-1].c || 1;
+                        var ch = (ohlc[m].c - prevC) / prevC * 100;
+                        moves.push({ idx: m, ch: ch });
+                    }
+                    moves.sort(function(a, b) { return b.ch - a.ch; });
+                    var buyIdx = {}, sellIdx = {};
+                    for (var b = 0; b < moves.length && Object.keys(buyIdx).length < 2; b++) {
+                        if (moves[b].ch > 0.15) buyIdx[moves[b].idx] = moves[b].ch;
+                    }
+                    moves.sort(function(a, b) { return a.ch - b.ch; });
+                    for (var s = 0; s < moves.length && Object.keys(sellIdx).length < 1; s++) {
+                        if (moves[s].ch < -0.15) sellIdx[moves[s].idx] = moves[s].ch;
+                    }
+
+                    function tag(txt, cx, cy, bgc) {
+                        g.save();
+                        g.font = "800 10px 'JetBrains Mono', monospace";
+                        var w = g.measureText(txt).width + 16;
+                        var h = 20;
+                        g.shadowColor = bgc;
+                        g.shadowBlur = 14;
+                        g.fillStyle = bgc;
+                        roundRectPath(g, cx - w / 2, cy - h / 2, w, h, 4);
+                        g.fill();
+                        g.shadowBlur = 0;
+                        g.fillStyle = '#06120f';
+                        g.textAlign = 'center';
+                        g.textBaseline = 'middle';
+                        g.fillText(txt, cx, cy + 0.5);
+                        g.restore();
+                    }
+
+                    /* ---- candles: slim, sharp, solid like the photo ---- */
+                    for (i = 0; i < n; i++) {
+                        d = ohlc[i];
+                        el = meta.data[i];
+                        x = el.x;
+                        bw = el.width || 30;
+                        var bodyW = Math.max(7, Math.min(18, bw * 0.42));
+                        var wickW = 2;
+                        var up = d.c >= d.o;
+                        var col = up ? upColor : downColor;
+                        var yH = yScale.getPixelForValue(d.h);
+                        var yL = yScale.getPixelForValue(d.l);
+                        var yO = yScale.getPixelForValue(d.o);
+                        var yC = yScale.getPixelForValue(d.c);
+                        var top = Math.min(yO, yC);
+                        var hgt = Math.max(18, Math.abs(yC - yO));
+
+                        g.shadowColor = col;
+                        g.shadowBlur = 10;
+
+                        /* thin wick */
+                        g.strokeStyle = col;
+                        g.lineWidth = wickW;
+                        g.lineCap = 'round';
+                        g.beginPath();
+                        g.moveTo(x, yH);
+                        g.lineTo(x, yL);
+                        g.stroke();
+
+                        /* slim solid body, slightly sharp */
+                        g.fillStyle = col;
+                        roundRectPath(g, x - bodyW / 2, top, bodyW, hgt, 2);
+                        g.fill();
+                        g.shadowBlur = 0;
+
+                        /* tiny +/- value near the extreme, like +49.645 / -2.157 */
+                        var showEvery = n > 14 ? 2 : 1;
+                        if (i % showEvery === 0) {
+                            var pc = i === 0
+                                ? ((d.c - d.o) / (d.o || 1) * 100)
+                                : ((d.c - ohlc[i-1].c) / (ohlc[i-1].c || 1) * 100);
+                            var txt = (pc >= 0 ? '+' : '') + pc.toFixed(2);
+                            g.font = "500 8px 'JetBrains Mono', monospace";
+                            g.fillStyle = up ? 'rgba(47,230,168,0.85)' : 'rgba(255,77,94,0.85)';
+                            g.textAlign = 'center';
+                            g.textBaseline = 'alphabetic';
+                            if (up) g.fillText(txt, x, yH - 5);
+                            else g.fillText(txt, x, yL + 11);
+                        }
+
+                        /* BUY above / SELL below */
+                        if (buyIdx[i] !== undefined) {
+                            tag('BUY', x, yScale.getPixelForValue(d.h) - 24, upColor);
+                        } else if (sellIdx[i] !== undefined) {
+                            tag('SELL', x, yScale.getPixelForValue(d.l) + 24, downColor);
+                        }
+                    }
+
+                    /* ---- white dashed zigzag through swings, open circles at ends ---- */
+                    if (area && n > 2) {
+                        var picks = [0];
+                        var steps = Math.min(5, n - 1);
+                        for (var q = 1; q <= steps; q++) {
+                            picks.push(Math.round(q * (n - 1) / steps));
+                        }
+                        var zpts = picks.map(function(idx, k) {
+                            var dd = ohlc[idx];
+                            /* alternate high / low to get that zigzag feel */
+                            var val = (k % 2 === 0) ? dd.l : dd.h;
+                            return { x: meta.data[idx].x, y: yScale.getPixelForValue(val) };
+                        });
+                        g.save();
+                        g.beginPath();
+                        g.rect(area.left, area.top, area.right - area.left, area.bottom - area.top);
+                        g.clip();
+                        g.setLineDash([6, 5]);
+                        g.strokeStyle = 'rgba(255,255,255,0.85)';
+                        g.lineWidth = 1.2;
+                        g.beginPath();
+                        g.moveTo(zpts[0].x, zpts[0].y);
+                        for (var z = 1; z < zpts.length; z++) g.lineTo(zpts[z].x, zpts[z].y);
+                        g.stroke();
+                        g.setLineDash([]);
+                        /* open circle markers */
+                        zpts.forEach(function(pt, k) {
+                            if (k !== 0 && k !== zpts.length - 1 && k !== 2) return;
+                            g.beginPath();
+                            g.arc(pt.x, pt.y, 5, 0, Math.PI * 2);
+                            g.fillStyle = '#0a111f';
+                            g.fill();
+                            g.lineWidth = 1.6;
+                            g.strokeStyle = '#ffffff';
+                            g.stroke();
+                        });
+                        /* faint analytics caption like the photo, bottom-right */
+                        g.font = "500 8px 'JetBrains Mono', monospace";
+                        g.fillStyle = 'rgba(139,147,165,0.40)';
+                        g.textAlign = 'right';
+                        g.fillText('ANALYTICS_G · ' + currentSymbol + ' · AI FORECAST', area.right - 8, area.bottom - 8);
+                        g.restore();
+                    }
+
+                    /* ---- سهم المستقبل: مسار متوقع بعد آخر شمعة ---- */
+                    if (n >= 3) {
+                        var cA = ohlc[n-3].c, cB = ohlc[n-2].c, cC = ohlc[n-1].c;
+                        var slope = ((cC - cA) / 2) || 0;
+                        if (slope === 0) slope = (cC - cB) || (cC * 0.002);
+                        var f1 = cC + slope, f2 = cC + slope * 2.1;
+                        var futUp = f2 >= cC;
+                        var futCol = futUp ? upColor : downColor;
+                        var lastX = meta.data[n-1].x;
+                        var stepX = (n > 1) ? Math.abs(meta.data[n-1].x - meta.data[n-2].x) : 34;
+                        if (!(stepX > 8)) stepX = 34;
+                        var fx1 = lastX + stepX * 0.85;
+                        var fx2 = lastX + stepX * 1.7;
+                        var y0 = yScale.getPixelForValue(cC);
+                        var y1 = yScale.getPixelForValue(f1);
+                        var y2 = yScale.getPixelForValue(f2);
+                        var padT = (area ? area.top + 16 : 16), padB = (area ? area.bottom - 16 : 400);
+                        y1 = Math.max(padT, Math.min(padB, y1));
+                        y2 = Math.max(padT, Math.min(padB, y2));
+                        g.save();
+                        /* نقطة النهاية */
+                        g.shadowColor = futCol; g.shadowBlur = 16;
+                        g.fillStyle = futCol;
+                        g.beginPath(); g.arc(lastX, y0, 4.5, 0, Math.PI * 2); g.fill();
+                        g.shadowBlur = 0;
+                        g.fillStyle = '#0a111f';
+                        g.beginPath(); g.arc(lastX, y0, 2, 0, Math.PI * 2); g.fill();
+                        /* خط المسار */
+                        g.shadowColor = futCol; g.shadowBlur = 12;
+                        g.strokeStyle = futCol; g.lineWidth = 2; g.setLineDash([7, 5]);
+                        g.lineCap = 'round'; g.lineJoin = 'round';
+                        g.beginPath();
+                        g.moveTo(lastX, y0);
+                        g.lineTo(fx1, y1);
+                        g.lineTo(fx2, y2);
+                        g.stroke();
+                        g.setLineDash([]);
+                        /* رأس السهم */
+                        var ang = Math.atan2(y2 - y1, fx2 - fx1);
+                        var sz = 9;
+                        g.fillStyle = futCol;
+                        g.beginPath();
+                        g.moveTo(fx2 + Math.cos(ang) * 2, y2 + Math.sin(ang) * 2);
+                        g.lineTo(fx2 - sz * Math.cos(ang - 0.42), y2 - sz * Math.sin(ang - 0.42));
+                        g.lineTo(fx2 - sz * Math.cos(ang + 0.42), y2 - sz * Math.sin(ang + 0.42));
+                        g.closePath(); g.fill();
+                        g.shadowBlur = 0;
+                        /* ليبل صغير */
+                        var pctF = cC ? ((f2 - cC) / cC * 100) : 0;
+                        var lab = (pctF >= 0 ? '+' : '') + pctF.toFixed(1) + '% FUTURE';
+                        g.font = "700 9px 'JetBrains Mono', monospace";
+                        var lw = g.measureText(lab).width + 12;
+                        var lx = Math.min(fx2 - lw / 2, (area ? area.right - lw - 2 : fx2 - lw / 2));
+                        var ly = y2 + (futUp ? -18 : 18);
+                        g.fillStyle = futUp ? 'rgba(47,230,168,0.16)' : 'rgba(255,77,94,0.16)';
+                        roundRectPath(g, lx, ly - 9, lw, 18, 5); g.fill();
+                        g.fillStyle = futCol;
+                        g.textAlign = 'center'; g.textBaseline = 'middle';
+                        g.fillText(lab, lx + lw / 2, ly + 0.5);
+                        g.restore();
+                    }
+                    g.restore();
+                }
+            };
+
+            chartInstance = new Chart(ctx, {
+                type: 'bar',
+                plugins: [candlePlugin],
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '',
+                        data: ohlc.map(function(d) { return [d.l, d.h]; }),
+                        backgroundColor: 'rgba(0,0,0,0)',
+                        borderColor: 'rgba(0,0,0,0)',
+                        borderWidth: 0,
+                        borderSkipped: false,
+                        categoryPercentage: 1,
+                        barPercentage: 1
+                    }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    animation: { duration: 900, easing: 'easeOutQuart' },
+                    layout: { padding: { top: 30, left: 4, right: 52, bottom: 10 } },
+                    interaction: { intersect: false, mode: 'index' },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(18,23,31,0.97)',
+                            titleColor: '#8b93a5',
+                            bodyColor: '#e8eaf0',
+                            borderColor: borderColor,
+                            borderWidth: 1,
+                            titleFont: { family: "'JetBrains Mono'", size: 10 },
+                            bodyFont: { family: "'JetBrains Mono'", size: 13, weight: 'bold' },
+                            padding: 12, cornerRadius: 12,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(item) {
+                                    var d = ohlc[item.dataIndex];
+                                    if (!d) return '$' + item.parsed.y.toFixed(2);
+                                    return [
+                                        'O $' + d.o.toFixed(2),
+                                        'H $' + d.h.toFixed(2),
+                                        'L $' + d.l.toFixed(2),
+                                        'C $' + d.c.toFixed(2)
+                                    ];
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            offset: false,
+                            ticks: {
+                                color: 'rgba(139,147,165,0.75)',
+                                font: { family: "'JetBrains Mono'", size: 9 },
+                                maxRotation: 0,
+                                autoSkip: true,
+                                maxTicksLimit: 8
+                            },
+                            grid: { display: false, drawBorder: false }
+                        },
+                        y: {
+                            position: 'right',
+                            grace: '10%',
+                            ticks: {
+                                color: 'rgba(139,147,165,0.75)',
+                                font: { family: "'JetBrains Mono'", size: 9.5 },
+                                padding: 10,
+                                callback: function(v) { return '$' + v.toFixed(0); }
+                            },
+                            grid: { color: 'rgba(148,163,184,0.08)', drawBorder: false, borderDash: [4, 5] }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderTable(data, tf) {
+            var tbody = document.getElementById('predBody');
+            tbody.innerHTML = '';
+            var lastPrice = data.last_price || currentData.current_price || data.predictions[0];
+            var tz = getMarketTimezone(currentSymbol);
+            data.predictions.forEach(function(price, i) {
+                var chg = ((price - lastPrice) / lastPrice * 100).toFixed(2);
+                var signal, sigClass;
+                if (chg >= 2) { signal = t('strongBuy'); sigClass = 'strong_buy'; }
+                else if (chg >= 0.5) { signal = t('buy'); sigClass = 'buy'; }
+                else if (chg <= -2) { signal = t('strongSell'); sigClass = 'strong_sell'; }
+                else if (chg <= -0.5) { signal = t('sell'); sigClass = 'sell'; }
+                else { signal = t('neutral'); sigClass = 'neutral'; }
+                var n = new Date();
+                var date = '';
+                if (tf === 'daily') date = fmtTZ(new Date(n.getTime() + (i+1)*86400000), tz, {day:'2-digit', month:'short', year:'numeric'});
+                else if (tf === 'weekly') date = t('week') + ' ' + (i+1);
+                else if (tf === 'monthly') date = t('month') + ' ' + (i+1);
+                else date = t('year') + ' ' + (i+1);
+                var tr = document.createElement('tr');
+                tr.innerHTML = '<td>' + date + '</td><td style="color:var(--gold);font-weight:600;">$' + price.toFixed(2) + '</td><td style="color:' + (chg>=0?'var(--green)':'var(--red)') + '">' + (chg>=0?'+':'') + chg + '%</td><td><span class="sig-badge ' + sigClass + '">' + signal + '</span></td>';
+                tbody.appendChild(tr);
+            });
+        }
+
+        predict();
+    </script>
+</body>
+</html>
