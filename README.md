@@ -21,8 +21,8 @@ AI-powered stock market prediction dashboard with real-time analysis using Machi
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/nexara93-oss/stock-predictor.git
-cd stock-predictor
+git clone https://github.com/nexara93-oss/stock-predictor-ai.git
+cd stock-predictor-ai
 ```
 
 ### 2. Install dependencies
