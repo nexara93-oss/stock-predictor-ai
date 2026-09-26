@@ -54,8 +54,8 @@ start.bat
 
 ### 5. Open in browser
 
-- **Main page:** http://localhost:3000
-
+- **Main page:** http://localhost:3001
+# url:https://opulent-funicular-r74x74qp5pwrfpvgw-3001.app.github.dev
 ### 6. Enable the AI chat (optional, free)
 
 1. Create a free key at [openrouter.ai](https://openrouter.ai/keys)
